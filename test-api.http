@@ -1,0 +1,142 @@
+
+@baseUrl = http://localhost:3000
+
+### ==========================================
+### 1. HEALTH CHECK
+### ==========================================
+
+GET {{baseUrl}}/api/health
+
+
+### ==========================================
+### 2. KATEGORI - LIHAT SEMUA
+### ==========================================
+
+GET {{baseUrl}}/api/categories
+
+
+### ==========================================
+### 3. KATEGORI - BUAT PENGELUARAN
+### Jalankan satu kali saja.
+### Nama harus unik.
+### ==========================================
+
+POST {{baseUrl}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Makan",
+  "type": "EXPENSE"
+}
+
+
+### ==========================================
+### 4. KATEGORI - BUAT PEMASUKAN
+### Jalankan satu kali saja.
+### Nama harus unik.
+### ==========================================
+
+POST {{baseUrl}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Gaji",
+  "type": "INCOME"
+}
+
+
+### ==========================================
+### 5. TRANSAKSI - LIHAT SEMUA
+### ==========================================
+
+GET {{baseUrl}}/api/transactions
+
+
+### ==========================================
+### 6. TRANSAKSI - BUAT PENGELUARAN
+### Ganti categoryId sesuai ID kategori EXPENSE.
+### ==========================================
+
+POST {{baseUrl}}/api/transactions
+Content-Type: application/json
+
+{
+  "type": "EXPENSE",
+  "amount": 15000,
+  "description": "Makan siang",
+  "categoryId": 2
+}
+
+
+### ==========================================
+### 7. TRANSAKSI - BUAT PEMASUKAN
+### Ganti categoryId sesuai ID kategori INCOME.
+### ==========================================
+
+POST {{baseUrl}}/api/transactions
+Content-Type: application/json
+
+{
+  "type": "INCOME",
+  "amount": 100000,
+  "description": "Uang saku",
+  "categoryId": 1
+}
+
+{
+  "type": "INCOME",
+  "amount": 150000,
+  "description": "Bonus",
+  "categoryId": 1
+}
+
+
+### ==========================================
+### 8. TRANSAKSI - EDIT SEBAGIAN DATA
+### Ganti ID pada URL dengan ID transaksi nyata.
+### ==========================================
+
+PATCH {{baseUrl}}/api/transactions/1
+Content-Type: application/json
+
+{
+  "amount": 18000,
+  "description": "Makan siang dan minum"
+}
+
+
+### ==========================================
+### 9. TRANSAKSI - EDIT KATEGORI DAN TIPE
+### CategoryId harus sesuai dengan tipe transaksi.
+### ==========================================
+
+PATCH {{baseUrl}}/api/transactions/1
+Content-Type: application/json
+
+{
+  "type": "EXPENSE",
+  "categoryId": 1
+}
+
+
+### ==========================================
+### 10. TRANSAKSI - HAPUS
+### PERHATIAN: Menghapus data secara permanen.
+### Gunakan ID transaksi percobaan yang benar.
+### ==========================================
+
+DELETE {{baseUrl}}/api/transactions/1
+
+
+### ==========================================
+### 11. TRANSAKSI - CEK HASIL AKHIR
+### ==========================================
+
+GET {{baseUrl}}/api/transactions
+
+
+### ==========================================
+### 12. DASHBOARD - RINGKASAN KEUANGAN
+### ==========================================
+
+GET {{baseUrl}}/api/dashboard
